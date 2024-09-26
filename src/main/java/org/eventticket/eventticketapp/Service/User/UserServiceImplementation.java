@@ -1,7 +1,9 @@
 package org.eventticket.eventticketapp.Service.User;
 
 import org.eventticket.eventticketapp.Dto.request.CreateUserRequest;
+import org.eventticket.eventticketapp.Dto.request.LoginUserRequest;
 import org.eventticket.eventticketapp.Dto.response.CreateUserResponse;
+import org.eventticket.eventticketapp.Dto.response.LoginUserResponse;
 import org.eventticket.eventticketapp.data.model.User;
 import org.eventticket.eventticketapp.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,17 @@ public class UserServiceImplementation implements UserService {
         CreateUserResponse createUserResponse = new CreateUserResponse();
         createUserResponse.setMessage("User created Successfully");
         return createUserResponse;
+    }
+
+    @Override
+    public LoginUserResponse isUserLoggedIn(LoginUserRequest loginRequest) {
+        User user = new User();
+        user.setUsername(loginRequest.getUserName());
+        user.setPassword(loginRequest.getPassword());
+
+        LoginUserResponse response = new LoginUserResponse();
+        response.setMessage("Login sucessful");
+        return response;
     }
 
 }
