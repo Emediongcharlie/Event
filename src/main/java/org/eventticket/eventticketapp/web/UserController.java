@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/create")
+    @GetMapping("/createUser")
     public ResponseEntity<?> createUser(@RequestBody CreateUserRequest createUserRequest){
         try{
             CreateUserResponse createUserResponse = userService.createUser(createUserRequest);
