@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImplementation implements UserService {
+    private static final int MIN_LENGTH = 6;
 
     @Autowired
     private UserRepository userRepository;
@@ -20,6 +21,8 @@ public class UserServiceImplementation implements UserService {
     public CreateUserResponse createUser(CreateUserRequest createUserRequest) {
         User user = userRepository.findByUsername(createUserRequest.getUsername());
         if (user != null) throw new RuntimeException("User already existing");
+        //validUsername(createUserRequest.getUsername());
+        //validatePasswordLength(createUserRequest.getPassword());
 
         User newUser = new User();
         newUser.setEmail(createUserRequest.getEmail());
@@ -32,16 +35,29 @@ public class UserServiceImplementation implements UserService {
         createUserResponse.setMessage("User created Successfully");
         return createUserResponse;
     }
+    private void validUsername(String username){
+        if(username == null || username.trim().isEmpty()) throw new RuntimeException("empty username");
+    }
+
+    private void validatePasswordLength(String password){
+        if(password == null || password.trim().length() <= MIN_LENGTH) throw new RuntimeException("invalid password length");
+    }
 
     @Override
     public LoginUserResponse isUserLoggedIn(LoginUserRequest loginRequest) {
-        User user = new User();
+
+        validUsername(loginRequest.getUserName());
+        validatePasswordLength(loginRequest.getPassword());
+        User user =userRepository.findByUsername(loginRequest.getUserName());
+        if (user == null) throw new RuntimeException("not a registered user");
+
         user.setUsername(loginRequest.getUserName());
         user.setPassword(loginRequest.getPassword());
 
         LoginUserResponse response = new LoginUserResponse();
-        response.setMessage("Login sucessful");
+        response.setMessage("Login successful");
         return response;
     }
 
-}
+    }
+

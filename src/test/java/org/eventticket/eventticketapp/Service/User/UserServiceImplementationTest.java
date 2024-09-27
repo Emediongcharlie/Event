@@ -20,11 +20,11 @@ class UserServiceImplementationTest {
     @Test
     void testThatUserCanBeCreated() {
        CreateUserRequest createUserRequest = new CreateUserRequest();
-       createUserRequest.setEmail("Richness@yahoo.com");
-       createUserRequest.setName("Richard");
-       createUserRequest.setPhoneNumber("09021324121");
-       createUserRequest.setPassword("wealthy");
-       createUserRequest.setUsername("Richy");
+       createUserRequest.setEmail("Richness@gmail.com");
+       createUserRequest.setName("Rich");
+       createUserRequest.setPhoneNumber("09021324165");
+       createUserRequest.setPassword("234312");
+       createUserRequest.setUsername("steezy");
        CreateUserResponse createUserResponse = userService.createUser(createUserRequest);
        createUserResponse.setMessage("User created Successfully");
        assertEquals(createUserResponse.getMessage(),"User created Successfully");
@@ -33,21 +33,22 @@ class UserServiceImplementationTest {
     @Test
     void testThatUserCannotBeCreatedWithSameUsername(){
         CreateUserRequest createUserRequest = new CreateUserRequest();
-        createUserRequest.setEmail("Richness@yahoo.com");
-        createUserRequest.setName("Richard");
-        createUserRequest.setPhoneNumber("09021324121");
-        createUserRequest.setPassword("wealthy");
-        createUserRequest.setUsername("Richy");
+        createUserRequest.setEmail("Richness@gmail.com");
+        createUserRequest.setName("Rich");
+        createUserRequest.setPhoneNumber("09021324165");
+        createUserRequest.setPassword("234312");
+        createUserRequest.setUsername("steezy");
         assertThrows(RuntimeException.class, ()-> {throw new RuntimeException("user already existing");});
     }
 
     @Test
     void testThatUserMustBeCreatedBeforeLogin(){
         CreateUserRequest createUserRequest = new CreateUserRequest();
-        createUserRequest.setUsername("oloade");
-        createUserRequest.setEmail("ariyo@gmail.com");
-        createUserRequest.setPhoneNumber("08123456712");
-        createUserRequest.setName("micheal");
+        createUserRequest.setUsername("ola");
+        createUserRequest.setEmail("arike@gmail.com");
+        createUserRequest.setPhoneNumber("08143456712");
+        createUserRequest.setName("mich");
+        createUserRequest.setPassword("980298");
 
         LoginUserRequest loginRequest = new LoginUserRequest();
         loginRequest.setUserName(createUserRequest.getUsername());
@@ -62,7 +63,18 @@ class UserServiceImplementationTest {
     }
 
     @Test
-    void testThatUserCanViewEvents(){
+    void testThatUsernameCantnotBeEmpty(){
+        CreateUserRequest createUserRequest = new CreateUserRequest();
+        createUserRequest.setUsername("");
+        createUserRequest.setEmail("ade@yahoo.com");
+        createUserRequest.setPhoneNumber("01123456712");
+        createUserRequest.setPassword("12345678");
+        createUserRequest.setName("kemo");
+        CreateUserResponse createUserResponse = userService.createUser(createUserRequest);
+        createUserResponse.setMessage("User created Successfully");
+        assertThrows(RuntimeException.class, ()-> {throw new RuntimeException("username is empty");});
+
+
 
     }
 
