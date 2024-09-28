@@ -10,6 +10,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+import org.eventticket.eventticketapp.adminServices.AdminService;
+import org.eventticket.eventticketapp.data.repository.AdminRepository;
+import org.eventticket.eventticketapp.dtos.request.CreateLoginRequest;
+import org.eventticket.eventticketapp.dtos.request.CreateLogoutRequest;
+import org.eventticket.eventticketapp.dtos.request.CreateRegistrationRequest;
+import org.eventticket.eventticketapp.dtos.response.LoginResponse;
+import org.eventticket.eventticketapp.dtos.response.LogoutResponse;
+import org.eventticket.eventticketapp.dtos.response.RegistrationResponse;
+import org.eventticket.eventticketapp.exception.UserAlreadyExistException;
 
 import java.util.List;
 import java.util.Optional;
