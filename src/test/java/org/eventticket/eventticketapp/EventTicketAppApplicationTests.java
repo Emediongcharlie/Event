@@ -1,18 +1,17 @@
 package org.eventticket.eventticketapp;
 
 import org.eventticket.eventticketapp.data.model.Admin;
+import org.eventticket.eventticketapp.data.model.Event;
 import org.eventticket.eventticketapp.data.repository.EventRepository;
-import org.eventticket.eventticketapp.dto.request.BookEventRequest;
-import org.eventticket.eventticketapp.dto.request.EventUpdateRequest;
-import org.eventticket.eventticketapp.dto.request.RemoveEventRequest;
-import org.eventticket.eventticketapp.dto.response.BookEventResponse;
-import org.eventticket.eventticketapp.dto.response.EventUpdateResponse;
-import org.eventticket.eventticketapp.dto.response.RemoveEventResponse;
+import org.eventticket.eventticketapp.dto.request.*;
+import org.eventticket.eventticketapp.dto.response.*;
 import org.eventticket.eventticketapp.services.AdminServices;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -76,19 +75,27 @@ class EventTicketAppApplicationTests {
     }
 
     @Test
-    public void testEventCanBeDeletedById(){
-        BookEventRequest request = new BookEventRequest();
-        request.setEventName("tech fate");
-        request.setEventDescription("to get all techie together");
-        request.setEventDateAndTime("4/3/2024");
-        request.setEventLocation("Lagos");
-        request.setPrice("2000");
-        BookEventResponse response = adminServices.createEvent(request);
-        assertThat(response).isNotNull();
+    public void testEventCanBeDeletedByName(){
         RemoveEventRequest request1 = new RemoveEventRequest();
-        request1.setEventId(31);
-        RemoveEventResponse response1 = adminServices.removeEventById(request1, 31);
-        assertThat(response1).isNull();
+        request1.setEventName("3");
+        RemoveEventResponse response1 = adminServices.removeEventByName(request1, "3");
+        assertThat(response1.getMessage().contains("successfully removed"));
+
+    }
+
+    @Test
+    public void testThatAllEventsCanBeRetrieved(){
+        List<Event> response = adminServices.viewEvent();
+        assertThat(response).isNotNull();
+    }
+
+    @Test
+    public void testFindEventByLocation(){
+        FindEventByLocationRequest request = new FindEventByLocationRequest();
+        request.setEventName("tech");
+        request.setLocation("1");
+        List<Event> response = adminServices.findEventByEventLocation(request);
+        assertThat(response).isNotNull();
 
     }
 
