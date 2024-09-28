@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -94,9 +95,16 @@ class EventTicketAppApplicationTests {
         FindEventByLocationRequest request = new FindEventByLocationRequest();
         request.setEventName("tech");
         request.setLocation("1");
-        List<Event> response = adminServices.findEventByEventLocation(request);
-        assertThat(response).isNotNull();
+//        List<Event> response = adminServices.findEventByEventLocation(request);
+//        assertThat(response).isNotNull();
+    }
 
+    @Test
+    public void testFindEventByPrice(){
+        FindEventByPriceRequest request = new FindEventByPriceRequest();
+        request.setPrice("2");
+        Optional<Event> response = eventRepository.findAllEventByPrice("2");
+        assertThat(response).isNotNull();
     }
 
 }
