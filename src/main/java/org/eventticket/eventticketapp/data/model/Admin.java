@@ -12,6 +12,7 @@ import lombok.Setter;
 @Entity
 public class Admin {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
