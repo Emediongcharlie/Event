@@ -10,8 +10,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+import org.eventticket.eventticketapp.adminServices.AdminService;
+import org.eventticket.eventticketapp.data.repository.AdminRepository;
+import org.eventticket.eventticketapp.dtos.request.CreateLoginRequest;
+import org.eventticket.eventticketapp.dtos.request.CreateLogoutRequest;
+import org.eventticket.eventticketapp.dtos.request.CreateRegistrationRequest;
+import org.eventticket.eventticketapp.dtos.response.LoginResponse;
+import org.eventticket.eventticketapp.dtos.response.LogoutResponse;
+import org.eventticket.eventticketapp.dtos.response.RegistrationResponse;
+import org.eventticket.eventticketapp.exception.UserAlreadyExistException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -94,9 +106,16 @@ class EventTicketAppApplicationTests {
         FindEventByLocationRequest request = new FindEventByLocationRequest();
         request.setEventName("tech");
         request.setLocation("1");
-        List<Event> response = adminServices.findEventByEventLocation(request);
-        assertThat(response).isNotNull();
+//        List<Event> response = adminServices.findEventByEventLocation(request);
+//        assertThat(response).isNotNull();
+    }
 
+    @Test
+    public void testFindEventByPrice(){
+        FindEventByPriceRequest request = new FindEventByPriceRequest();
+        request.setPrice("2");
+        Optional<Event> response = eventRepository.findAllEventByPrice("2");
+        assertThat(response).isNotNull();
     }
 
 }

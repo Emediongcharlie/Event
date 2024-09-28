@@ -8,8 +8,10 @@ import org.eventticket.eventticketapp.dto.response.*;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -87,31 +89,33 @@ public class AdminServiceImpl implements AdminServices {
     }
 
     @Override
-    public List<Event> findEventByEventLocation(FindEventByLocationRequest request) {
+    public List<Event> findEventByEventLocation(String eventLocation) {
 
-//        Event eventArena = eventRepository.findEventByEventLocation(request.getLocation());
-//        for(Event event: eventRepository.findAll()){
-//            if(event.getEventLocation().equals(request.getLocation())){
-//                eventRepository.findAll();
-//            }
-//        }
-//        throw new IllegalArgumentException("not found");
-//    }
-return null;
+        Event findEventLocation = eventRepository.findEventByEventLocation(eventLocation);
+        List<Event> events = new ArrayList<>();
+
+        for(Event event: eventRepository.findAll()) {
+            if(event.getEventLocation().equals(findEventLocation.getEventLocation())) {
+                events.add(event);
+                return events;
+            }
+        }
+        return events;
     }
 
     @Override
-    public FindEventByNameResponse findEventByName(FindEventByNameRequest request) {
-        return null;
+    public Event findEventByName(String eventName) {
+        Optional<Event> findEvents = eventRepository.findEventByEventName(eventName);
+        if (findEvents.isPresent()) {
+            return findEvents.get();
+        }
+        throw new IllegalArgumentException("Event not found");
     }
 
     @Override
-    public FindEventByPriceResponse findEventByPrice(FindEventByPriceRequest request, double price) {
-        return null;
-    }
+    public List<String> findEventByPrice(String price) {
 
-    @Override
-    public FindEventByCategoryResponse findEventByCategory(FindEventByCategoryRequest request) {
-        return null;
+        return eventRepository.findAll().stream().map(Event::getEventLocation).collect(Collectors.toList());
+
     }
 }

@@ -15,9 +15,7 @@ public interface AdminServices {
     EventUpdateResponse updateEvent(EventUpdateRequest request, String name);
     RemoveEventResponse removeEventByName(RemoveEventRequest request, String eventName);
     List<Event> viewEvent();
-    List<Event> findEventByEventLocation(FindEventByLocationRequest request);
-    FindEventByNameResponse findEventByName(FindEventByNameRequest request);
-    FindEventByPriceResponse findEventByPrice(FindEventByPriceRequest request, double price);
-    FindEventByCategoryResponse findEventByCategory(FindEventByCategoryRequest request);
-
+    List<Event> findEventByEventLocation(String eventLocation);
+    Event findEventByName(String eventName);
+    List<String> findEventByPrice(String price);
 }
