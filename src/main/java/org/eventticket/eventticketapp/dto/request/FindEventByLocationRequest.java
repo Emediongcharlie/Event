@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class FindEventByLocationRequest {
     private String Location;
+    private String eventName;
 }

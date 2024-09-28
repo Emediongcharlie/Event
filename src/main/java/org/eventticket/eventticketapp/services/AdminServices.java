@@ -13,7 +13,7 @@ public interface AdminServices {
 
     BookEventResponse createEvent(BookEventRequest request);
     EventUpdateResponse updateEvent(EventUpdateRequest request, String name);
-    RemoveEventResponse removeEventById(RemoveEventRequest request, int id);
+    RemoveEventResponse removeEventByName(RemoveEventRequest request, String eventName);
     List<Event> viewEvent();
     List<Event> findEventByEventLocation(FindEventByLocationRequest request);
     FindEventByNameResponse findEventByName(FindEventByNameRequest request);

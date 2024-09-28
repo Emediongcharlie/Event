@@ -70,15 +70,15 @@ public class AdminServiceImpl implements AdminServices {
 
 
     @Override
-    public RemoveEventResponse removeEventById(RemoveEventRequest request, int eventId) {
-        Optional <Event> eventToRemove = eventRepository.findEventByEventId(eventId);
+    public RemoveEventResponse removeEventByName(RemoveEventRequest request, String eventName) {
+        Optional <Event> eventToRemove = eventRepository.findEventByEventName(eventName);
        if (eventToRemove.isPresent()) {
-           eventRepository.delete(eventToRemove.get());
-           RemoveEventResponse response = new RemoveEventResponse();
-           response.setMessage("Event removed successfully");
-           return response;
+           Event event = eventToRemove.get();
+           eventRepository.delete(event);
        }
-       throw new IllegalArgumentException("Event not found");
+       RemoveEventResponse response = new RemoveEventResponse();
+       response.setMessage("Event removed successfully");
+       return response;
     }
 
     @Override
@@ -89,14 +89,17 @@ public class AdminServiceImpl implements AdminServices {
     @Override
     public List<Event> findEventByEventLocation(FindEventByLocationRequest request) {
 
-        Event eventArena = eventRepository.findEventByEventLocation(request.getLocation());
-        for(Event event: eventRepository.findAll()){
-            if(event.getEventLocation().equals(request.getLocation())){
-                eventRepository.findAll();
-            }
-        }
-        throw new IllegalArgumentException("not found");
+//        Event eventArena = eventRepository.findEventByEventLocation(request.getLocation());
+//        for(Event event: eventRepository.findAll()){
+//            if(event.getEventLocation().equals(request.getLocation())){
+//                eventRepository.findAll();
+//            }
+//        }
+//        throw new IllegalArgumentException("not found");
+//    }
+return null;
     }
+
     @Override
     public FindEventByNameResponse findEventByName(FindEventByNameRequest request) {
         return null;
