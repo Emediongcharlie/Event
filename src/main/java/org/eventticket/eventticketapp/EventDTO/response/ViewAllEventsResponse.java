@@ -1,4 +1,4 @@
-package org.eventticket.eventticketapp.dto.response;
+package org.eventticket.eventticketapp.EventDTO.response;
 
 import lombok.Getter;
 import lombok.Setter;

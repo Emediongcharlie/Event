@@ -2,18 +2,12 @@ package org.eventticket.eventticketapp.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.eventticket.eventticketapp.data.model.Event;
-import org.eventticket.eventticketapp.dto.request.BookEventRequest;
-import org.eventticket.eventticketapp.dto.request.FindEventByLocationRequest;
-import org.eventticket.eventticketapp.dto.request.FindEventByNameRequest;
-import org.eventticket.eventticketapp.dto.request.FindEventByPriceRequest;
-import org.eventticket.eventticketapp.dto.response.BookEventResponse;
-import org.eventticket.eventticketapp.dto.response.FindEventByLocationResponse;
-import org.eventticket.eventticketapp.dto.response.FindEventByNameResponse;
-import org.eventticket.eventticketapp.dto.response.FindEventByPriceResponse;
+import org.eventticket.eventticketapp.EventDTO.request.BookEventRequest;
+import org.eventticket.eventticketapp.EventDTO.response.BookEventResponse;
+import org.eventticket.eventticketapp.EventDTO.response.FindEventByPriceResponse;
 import org.eventticket.eventticketapp.services.AdminServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

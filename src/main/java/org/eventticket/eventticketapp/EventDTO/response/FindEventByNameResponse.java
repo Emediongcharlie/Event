@@ -1,14 +1,16 @@
-package org.eventticket.eventticketapp.dto.response;
+package org.eventticket.eventticketapp.EventDTO.response;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class FindEventByCategoryResponse {
+public class FindEventByNameResponse {
+
 
     private int eventId;
     private String eventName;
     private String location;
     private String description;
+    private String price;
 }
