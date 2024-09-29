@@ -4,15 +4,18 @@ package org.eventticket.eventticketapp;
 import org.eventticket.eventticketapp.data.model.Admin;
 
 import org.eventticket.eventticketapp.data.model.Event;
+import org.eventticket.eventticketapp.data.repository.AdminRepository;
 import org.eventticket.eventticketapp.data.repository.EventRepository;
 import org.eventticket.eventticketapp.EventDTO.request.*;
 import org.eventticket.eventticketapp.EventDTO.response.*;
 import org.eventticket.eventticketapp.services.AdminServices;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.eventticket.eventticketapp.adminServices.AdminService;
 import org.eventticket.eventticketapp.dtos.request.CreateLoginRequest;
@@ -30,7 +33,7 @@ import java.util.Optional;
 @SpringBootTest
 class EventTicketAppApplicationTests {
 	@Autowired
-	AdminRepository adminRepository;
+    AdminRepository adminRepository;
 	@Autowired
 	AdminService adminService;
 	@BeforeEach
