@@ -3,8 +3,8 @@ package org.eventticket.eventticketapp.services;
 import lombok.RequiredArgsConstructor;
 import org.eventticket.eventticketapp.data.model.Event;
 import org.eventticket.eventticketapp.data.repository.EventRepository;
-import org.eventticket.eventticketapp.dto.request.*;
-import org.eventticket.eventticketapp.dto.response.*;
+import org.eventticket.eventticketapp.EventDTO.request.*;
+import org.eventticket.eventticketapp.EventDTO.response.*;
 import org.springframework.stereotype.Service;
 
 

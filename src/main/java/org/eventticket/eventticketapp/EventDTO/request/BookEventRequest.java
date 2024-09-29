@@ -1,16 +1,18 @@
-package org.eventticket.eventticketapp.dto.request;
+package org.eventticket.eventticketapp.EventDTO.request;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
-public class EventUpdateRequest {
+@Getter
+public class BookEventRequest {
+
 
     private int eventId;
     private String eventName;
     private String eventDescription;
     private String eventLocation;
     private String eventDateAndTime;
+    private String price;
 
 }

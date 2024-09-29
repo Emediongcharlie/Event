@@ -1,11 +1,9 @@
-package org.eventticket.eventticketapp.dto.response;
+package org.eventticket.eventticketapp.EventDTO.response;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Setter
